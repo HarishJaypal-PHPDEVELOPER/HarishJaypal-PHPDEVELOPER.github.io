@@ -6,12 +6,25 @@
 <title>Harish Jaypal | Portfolio</title>
 
 <style>
+:root {
+  --bg: #0f172a;
+  --text: #ffffff;
+  --card: rgba(255,255,255,0.05);
+}
+
+.light-mode {
+  --bg: #ffffff;
+  --text: #000000;
+  --card: #f1f5f9;
+}
+
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(135deg, #0f172a, #020617);
-  color: white;
+  background: var(--bg);
+  color: var(--text);
   text-align: center;
+  transition: 0.3s;
 }
 
 header {
@@ -25,112 +38,83 @@ h1 {
 
 #typing {
   font-size: 20px;
-  color: #cbd5f5;
   margin-top: 10px;
 }
 
 .btn {
-  display: inline-block;
-  margin-top: 25px;
-  padding: 12px 25px;
-  background: #38bdf8;
-  color: black;
-  text-decoration: none;
+  margin-top: 20px;
+  padding: 10px 20px;
   border-radius: 30px;
+  border: none;
+  background: #38bdf8;
+  cursor: pointer;
   font-weight: bold;
-  transition: 0.3s;
 }
 
-.btn:hover {
-  background: #0ea5e9;
-  transform: scale(1.05);
+.toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
 }
 
 section {
   padding: 50px 20px;
 }
 
-.card-container {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
 .card {
-  background: rgba(255,255,255,0.05);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255,255,255,0.1);
+  background: var(--card);
   padding: 20px;
-  margin: 15px;
+  margin: 10px auto;
   border-radius: 15px;
   width: 250px;
-  transition: 0.3s;
-}
-
-.card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 0 20px rgba(56,189,248,0.3);
 }
 
 footer {
   padding: 20px;
-  background: #020617;
-  font-size: 14px;
-}
-
-/* Glow effect */
-.glow {
-  text-shadow: 0 0 10px #38bdf8, 0 0 20px #38bdf8;
 }
 </style>
 </head>
 
 <body>
 
+<button class="btn toggle" onclick="toggleMode()">🌙 / ☀️</button>
+
 <header>
-  <h1 class="glow">Hi, I'm Harish 👋</h1>
+  <h1>Hi, I'm Harish 👋</h1>
   <h2 id="typing"></h2>
-  <a href="https://github.com/HarishJaypal-PHPDEVELOPER" target="_blank" class="btn">Visit GitHub</a>
+  <a href="https://github.com/HarishJaypal-PHPDEVELOPER" target="_blank">
+    <button class="btn">Visit GitHub</button>
+  </a>
 </header>
 
 <section>
-  <h2>🚀 My Projects</h2>
-
-  <div class="card-container">
-
-    <a href="https://github.com/HarishJaypal-PHPDEVELOPER" target="_blank">
-      <div class="card">
-        <h3>PayBolt 💳</h3>
-        <p>Next-gen payment app</p>
-      </div>
-    </a>
-
-    <a href="https://github.com/HarishJaypal-PHPDEVELOPER" target="_blank">
-      <div class="card">
-        <h3>HarishCyborg 🤖</h3>
-        <p>AI powered system</p>
-      </div>
-    </a>
-
+  <h2>🧠 About Me</h2>
+  <div class="card">
+    <p>I am a passionate developer focused on AI, web development and building powerful systems 🚀</p>
   </div>
 </section>
 
 <section>
   <h2>🛠️ Skills</h2>
-  <p>PHP | HTML | CSS | JavaScript | Learning AI 🤖</p>
+  <div class="card">
+    <p>PHP | HTML | CSS | JavaScript | Learning AI 🤖</p>
+  </div>
 </section>
 
 <section>
   <h2>📫 Contact</h2>
-  <p>Email: harish@example.com</p>
+  <div class="card">
+    <p>Email: harish@example.com</p>
+  </div>
 </section>
 
 <footer>
-  <p>© 2026 Harish Jaypal | Built with passion 🔥</p>
+  <p>© 2026 Harish Jaypal 🔥</p>
 </footer>
 
 <script>
-let text = "Future AI Developer 🚀 | PHP Developer 💻";
+// typing effect
+let text = "Future AI Developer 🚀";
 let i = 0;
 
 function typing() {
@@ -141,6 +125,11 @@ function typing() {
   }
 }
 typing();
+
+// dark light toggle
+function toggleMode() {
+  document.body.classList.toggle("light-mode");
+}
 </script>
 
 </body>
