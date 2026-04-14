@@ -3,17 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Harish Jaypal | Portfolio</title>
+<title>Harish Jaypal | ULTRA LEGEND</title>
 
 <style>
 :root {
   --bg: #020617;
   --text: #ffffff;
-  --card: rgba(255,255,255,0.05);
   --accent: #38bdf8;
+  --card: rgba(255,255,255,0.05);
 }
 
-.light-mode {
+.light {
   --bg: #ffffff;
   --text: #000000;
   --card: #f1f5f9;
@@ -28,46 +28,61 @@ body {
   transition: 0.4s;
 }
 
-/* Floating background */
+/* Animated background */
 body::before {
   content: "";
   position: fixed;
   width: 200%;
   height: 200%;
-  background: radial-gradient(circle, rgba(56,189,248,0.1), transparent);
-  animation: moveBg 10s linear infinite;
+  background: radial-gradient(circle at center, rgba(56,189,248,0.15), transparent);
+  animation: bgMove 12s infinite linear;
   z-index: -1;
 }
 
-@keyframes moveBg {
+@keyframes bgMove {
   0% {transform: translate(0,0);}
-  50% {transform: translate(-50px,-50px);}
+  50% {transform: translate(-100px,-100px);}
   100% {transform: translate(0,0);}
 }
 
+/* Mouse glow */
+.cursor {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  background: var(--accent);
+  border-radius: 50%;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  transform: translate(-50%, -50%);
+}
+
+/* Header */
 header {
   text-align: center;
-  padding: 100px 20px;
+  padding: 120px 20px;
 }
 
 h1 {
-  font-size: 50px;
+  font-size: 55px;
   color: var(--accent);
-  text-shadow: 0 0 20px var(--accent);
+  text-shadow: 0 0 25px var(--accent);
 }
 
 #typing {
   font-size: 22px;
   margin-top: 10px;
+  opacity: 0.8;
 }
 
-/* Button */
+/* Buttons */
 .btn {
-  margin-top: 25px;
-  padding: 12px 25px;
+  margin-top: 30px;
+  padding: 12px 28px;
   border-radius: 30px;
   border: none;
   background: var(--accent);
+  color: black;
   cursor: pointer;
   font-weight: bold;
   transition: 0.3s;
@@ -75,6 +90,7 @@ h1 {
 
 .btn:hover {
   transform: scale(1.1);
+  box-shadow: 0 0 15px var(--accent);
 }
 
 /* Toggle */
@@ -84,23 +100,23 @@ h1 {
   right: 20px;
 }
 
-/* Sections */
+/* Section */
 section {
-  padding: 60px 20px;
+  padding: 70px 20px;
   text-align: center;
 }
 
-/* Glass Card */
+/* Card */
 .card {
+  max-width: 450px;
   margin: auto;
-  max-width: 400px;
-  padding: 25px;
-  border-radius: 15px;
+  padding: 30px;
+  border-radius: 20px;
   background: var(--card);
-  backdrop-filter: blur(10px);
-  transition: 0.4s;
+  backdrop-filter: blur(15px);
   opacity: 0;
-  transform: translateY(40px);
+  transform: translateY(60px);
+  transition: 0.5s;
 }
 
 .card.show {
@@ -108,30 +124,32 @@ section {
   transform: translateY(0);
 }
 
+/* Footer */
 footer {
-  text-align: center;
   padding: 20px;
-  opacity: 0.7;
+  opacity: 0.6;
 }
 </style>
 </head>
 
 <body>
 
+<div class="cursor" id="cursor"></div>
+
 <button class="btn toggle" onclick="toggleMode()">🌙 / ☀️</button>
 
 <header>
-  <h1>Hi, I'm Harish 👋</h1>
+  <h1>Harish Jaypal ⚡</h1>
   <div id="typing"></div>
   <a href="https://github.com/HarishJaypal-PHPDEVELOPER" target="_blank">
-    <button class="btn">GitHub</button>
+    <button class="btn">Enter My World 🌍</button>
   </a>
 </header>
 
 <section>
-  <h2>🧠 About Me</h2>
+  <h2>🧠 About</h2>
   <div class="card reveal">
-    <p>I build powerful web systems and aim to dominate AI development 🚀</p>
+    <p>I don’t just code… I build systems that think 🚀</p>
   </div>
 </section>
 
@@ -150,16 +168,15 @@ footer {
 </section>
 
 <footer>
-  <p>© 2026 Harish Jaypal 🔥</p>
+  <p>© 2026 ByteRudra 💀🔥</p>
 </footer>
 
 <script>
-// typing effect
-let text = "Future AI Developer 🚀 | PHP Developer 💻";
+// typing
+let text = "Future AI Developer 🚀 | System Builder 💻";
 let i = 0;
-
-function typing() {
-  if (i < text.length) {
+function typing(){
+  if(i < text.length){
     document.getElementById("typing").innerHTML += text.charAt(i);
     i++;
     setTimeout(typing, 40);
@@ -167,21 +184,27 @@ function typing() {
 }
 typing();
 
-// toggle mode
-function toggleMode() {
-  document.body.classList.toggle("light-mode");
+// toggle
+function toggleMode(){
+  document.body.classList.toggle("light");
 }
 
-// scroll reveal
-const reveals = document.querySelectorAll(".reveal");
-
-window.addEventListener("scroll", () => {
-  reveals.forEach(el => {
+// reveal
+const cards = document.querySelectorAll(".reveal");
+window.addEventListener("scroll", ()=>{
+  cards.forEach(el=>{
     let top = el.getBoundingClientRect().top;
-    if (top < window.innerHeight - 100) {
+    if(top < window.innerHeight - 100){
       el.classList.add("show");
     }
   });
+});
+
+// cursor glow
+const cursor = document.getElementById("cursor");
+document.addEventListener("mousemove", e=>{
+  cursor.style.left = e.clientX + "px";
+  cursor.style.top = e.clientY + "px";
 });
 </script>
 
