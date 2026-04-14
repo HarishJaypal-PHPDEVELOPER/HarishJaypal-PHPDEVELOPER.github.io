@@ -3,153 +3,172 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Harish Jaypal | ULTRA LEGEND</title>
+<title>Harish Jaypal | LEGEND+</title>
 
 <style>
 :root {
-  --bg: #020617;
-  --text: #ffffff;
-  --accent: #38bdf8;
-  --card: rgba(255,255,255,0.05);
+  --bg:#020617;
+  --text:#fff;
+  --accent:#38bdf8;
+  --card:rgba(255,255,255,0.05);
 }
 
 .light {
-  --bg: #ffffff;
-  --text: #000000;
-  --card: #f1f5f9;
+  --bg:#fff;
+  --text:#000;
+  --card:#f1f5f9;
 }
 
-body {
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  overflow-x: hidden;
-  transition: 0.4s;
+body{
+  margin:0;
+  font-family:'Segoe UI',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  transition:.4s;
+  overflow-x:hidden;
 }
 
-/* Animated background */
-body::before {
-  content: "";
-  position: fixed;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle at center, rgba(56,189,248,0.15), transparent);
-  animation: bgMove 12s infinite linear;
-  z-index: -1;
+/* background glow */
+body::before{
+  content:"";
+  position:fixed;
+  width:200%;
+  height:200%;
+  background:radial-gradient(circle,rgba(56,189,248,0.15),transparent);
+  animation:bg 12s linear infinite;
+  z-index:-1;
+}
+@keyframes bg{
+  50%{transform:translate(-80px,-80px);}
 }
 
-@keyframes bgMove {
-  0% {transform: translate(0,0);}
-  50% {transform: translate(-100px,-100px);}
-  100% {transform: translate(0,0);}
+/* buttons */
+.btn{
+  padding:12px 25px;
+  border:none;
+  border-radius:30px;
+  cursor:pointer;
+  margin:10px;
+  font-weight:bold;
+  background:linear-gradient(45deg,#38bdf8,#0ea5e9);
+  color:black;
+  position:relative;
+  overflow:hidden;
+  transition:.3s;
 }
 
-/* Mouse glow */
-.cursor {
-  position: fixed;
-  width: 20px;
-  height: 20px;
-  background: var(--accent);
-  border-radius: 50%;
-  pointer-events: none;
-  mix-blend-mode: screen;
-  transform: translate(-50%, -50%);
+.btn:hover{
+  transform:scale(1.1);
 }
 
-/* Header */
-header {
-  text-align: center;
-  padding: 120px 20px;
+/* ripple */
+.btn::after{
+  content:"";
+  position:absolute;
+  width:0;
+  height:0;
+  background:rgba(255,255,255,0.5);
+  border-radius:50%;
+  transform:translate(-50%,-50%);
+  top:50%;
+  left:50%;
+  opacity:0;
+}
+.btn:active::after{
+  width:200px;
+  height:200px;
+  opacity:1;
+  transition:.4s;
 }
 
-h1 {
-  font-size: 55px;
-  color: var(--accent);
-  text-shadow: 0 0 25px var(--accent);
+/* toggle */
+.toggle{
+  position:fixed;
+  top:20px;
+  right:20px;
 }
 
-#typing {
-  font-size: 22px;
-  margin-top: 10px;
-  opacity: 0.8;
+/* header */
+header{
+  text-align:center;
+  padding:120px 20px;
 }
 
-/* Buttons */
-.btn {
-  margin-top: 30px;
-  padding: 12px 28px;
-  border-radius: 30px;
-  border: none;
-  background: var(--accent);
-  color: black;
-  cursor: pointer;
-  font-weight: bold;
-  transition: 0.3s;
+h1{
+  font-size:50px;
+  color:var(--accent);
+  text-shadow:0 0 20px var(--accent);
 }
 
-.btn:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 15px var(--accent);
+/* typing */
+#typing{
+  margin-top:10px;
+  font-size:20px;
 }
 
-/* Toggle */
-.toggle {
-  position: fixed;
-  top: 20px;
-  right: 20px;
+/* section */
+section{
+  padding:70px 20px;
+  text-align:center;
 }
 
-/* Section */
-section {
-  padding: 70px 20px;
-  text-align: center;
+/* card */
+.card{
+  max-width:450px;
+  margin:auto;
+  padding:25px;
+  border-radius:15px;
+  background:var(--card);
+  backdrop-filter:blur(10px);
+  opacity:0;
+  transform:translateY(50px);
+  transition:.5s;
 }
 
-/* Card */
-.card {
-  max-width: 450px;
-  margin: auto;
-  padding: 30px;
-  border-radius: 20px;
-  background: var(--card);
-  backdrop-filter: blur(15px);
-  opacity: 0;
-  transform: translateY(60px);
-  transition: 0.5s;
+.card.show{
+  opacity:1;
+  transform:translateY(0);
 }
 
-.card.show {
-  opacity: 1;
-  transform: translateY(0);
+/* scroll top */
+#topBtn{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  display:none;
 }
 
-/* Footer */
-footer {
-  padding: 20px;
-  opacity: 0.6;
+/* footer */
+footer{
+  text-align:center;
+  padding:20px;
+  opacity:.6;
 }
 </style>
 </head>
 
 <body>
 
-<div class="cursor" id="cursor"></div>
-
 <button class="btn toggle" onclick="toggleMode()">🌙 / ☀️</button>
 
 <header>
   <h1>Harish Jaypal ⚡</h1>
   <div id="typing"></div>
-  <a href="https://github.com/HarishJaypal-PHPDEVELOPER" target="_blank">
-    <button class="btn">Enter My World 🌍</button>
-  </a>
+
+  <!-- NEW BUTTONS -->
+  <div>
+    <button class="btn" onclick="scrollToSection()">🚀 Explore</button>
+    <a href="https://github.com/HarishJaypal-PHPDEVELOPER" target="_blank">
+      <button class="btn">💻 GitHub</button>
+    </a>
+    <button class="btn" onclick="downloadResume()">📄 Resume</button>
+  </div>
 </header>
 
-<section>
+<section id="about">
   <h2>🧠 About</h2>
   <div class="card reveal">
-    <p>I don’t just code… I build systems that think 🚀</p>
+    <p>I build powerful systems and future AI tools 🚀</p>
   </div>
 </section>
 
@@ -164,8 +183,11 @@ footer {
   <h2>📫 Contact</h2>
   <div class="card reveal">
     <p>Email: harish@example.com</p>
+    <button class="btn">📩 Message Me</button>
   </div>
 </section>
+
+<button class="btn" id="topBtn" onclick="topFunction()">⬆ Top</button>
 
 <footer>
   <p>© 2026 ByteRudra 💀🔥</p>
@@ -173,13 +195,13 @@ footer {
 
 <script>
 // typing
-let text = "Future AI Developer 🚀 | System Builder 💻";
-let i = 0;
+let text="Future AI Developer 🚀 | Legend Mode 💀";
+let i=0;
 function typing(){
-  if(i < text.length){
-    document.getElementById("typing").innerHTML += text.charAt(i);
+  if(i<text.length){
+    document.getElementById("typing").innerHTML+=text.charAt(i);
     i++;
-    setTimeout(typing, 40);
+    setTimeout(typing,40);
   }
 }
 typing();
@@ -189,23 +211,37 @@ function toggleMode(){
   document.body.classList.toggle("light");
 }
 
-// reveal
-const cards = document.querySelectorAll(".reveal");
-window.addEventListener("scroll", ()=>{
+// scroll reveal
+const cards=document.querySelectorAll(".reveal");
+window.addEventListener("scroll",()=>{
   cards.forEach(el=>{
-    let top = el.getBoundingClientRect().top;
-    if(top < window.innerHeight - 100){
+    if(el.getBoundingClientRect().top < window.innerHeight-100){
       el.classList.add("show");
     }
   });
+
+  // show top button
+  if(window.scrollY>200){
+    document.getElementById("topBtn").style.display="block";
+  } else {
+    document.getElementById("topBtn").style.display="none";
+  }
 });
 
-// cursor glow
-const cursor = document.getElementById("cursor");
-document.addEventListener("mousemove", e=>{
-  cursor.style.left = e.clientX + "px";
-  cursor.style.top = e.clientY + "px";
-});
+// scroll to about
+function scrollToSection(){
+  document.getElementById("about").scrollIntoView({behavior:"smooth"});
+}
+
+// scroll top
+function topFunction(){
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+// fake resume download
+function downloadResume(){
+  alert("Resume coming soon 😎");
+}
 </script>
 
 </body>
