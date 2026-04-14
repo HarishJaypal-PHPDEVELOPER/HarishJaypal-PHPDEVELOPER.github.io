@@ -7,9 +7,10 @@
 
 <style>
 :root {
-  --bg: #0f172a;
+  --bg: #020617;
   --text: #ffffff;
   --card: rgba(255,255,255,0.05);
+  --accent: #38bdf8;
 }
 
 .light-mode {
@@ -23,54 +24,94 @@ body {
   font-family: 'Segoe UI', sans-serif;
   background: var(--bg);
   color: var(--text);
-  text-align: center;
-  transition: 0.3s;
+  overflow-x: hidden;
+  transition: 0.4s;
+}
+
+/* Floating background */
+body::before {
+  content: "";
+  position: fixed;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(56,189,248,0.1), transparent);
+  animation: moveBg 10s linear infinite;
+  z-index: -1;
+}
+
+@keyframes moveBg {
+  0% {transform: translate(0,0);}
+  50% {transform: translate(-50px,-50px);}
+  100% {transform: translate(0,0);}
 }
 
 header {
-  padding: 80px 20px;
+  text-align: center;
+  padding: 100px 20px;
 }
 
 h1 {
-  font-size: 45px;
-  color: #38bdf8;
+  font-size: 50px;
+  color: var(--accent);
+  text-shadow: 0 0 20px var(--accent);
 }
 
 #typing {
-  font-size: 20px;
+  font-size: 22px;
   margin-top: 10px;
 }
 
+/* Button */
 .btn {
-  margin-top: 20px;
-  padding: 10px 20px;
+  margin-top: 25px;
+  padding: 12px 25px;
   border-radius: 30px;
   border: none;
-  background: #38bdf8;
+  background: var(--accent);
   cursor: pointer;
   font-weight: bold;
+  transition: 0.3s;
 }
 
+.btn:hover {
+  transform: scale(1.1);
+}
+
+/* Toggle */
 .toggle {
   position: fixed;
   top: 20px;
   right: 20px;
 }
 
+/* Sections */
 section {
-  padding: 50px 20px;
+  padding: 60px 20px;
+  text-align: center;
 }
 
+/* Glass Card */
 .card {
-  background: var(--card);
-  padding: 20px;
-  margin: 10px auto;
+  margin: auto;
+  max-width: 400px;
+  padding: 25px;
   border-radius: 15px;
-  width: 250px;
+  background: var(--card);
+  backdrop-filter: blur(10px);
+  transition: 0.4s;
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.card.show {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 footer {
+  text-align: center;
   padding: 20px;
+  opacity: 0.7;
 }
 </style>
 </head>
@@ -81,29 +122,29 @@ footer {
 
 <header>
   <h1>Hi, I'm Harish 👋</h1>
-  <h2 id="typing"></h2>
+  <div id="typing"></div>
   <a href="https://github.com/HarishJaypal-PHPDEVELOPER" target="_blank">
-    <button class="btn">Visit GitHub</button>
+    <button class="btn">GitHub</button>
   </a>
 </header>
 
 <section>
   <h2>🧠 About Me</h2>
-  <div class="card">
-    <p>I am a passionate developer focused on AI, web development and building powerful systems 🚀</p>
+  <div class="card reveal">
+    <p>I build powerful web systems and aim to dominate AI development 🚀</p>
   </div>
 </section>
 
 <section>
   <h2>🛠️ Skills</h2>
-  <div class="card">
-    <p>PHP | HTML | CSS | JavaScript | Learning AI 🤖</p>
+  <div class="card reveal">
+    <p>PHP | HTML | CSS | JavaScript | AI 🤖</p>
   </div>
 </section>
 
 <section>
   <h2>📫 Contact</h2>
-  <div class="card">
+  <div class="card reveal">
     <p>Email: harish@example.com</p>
   </div>
 </section>
@@ -114,7 +155,7 @@ footer {
 
 <script>
 // typing effect
-let text = "Future AI Developer 🚀";
+let text = "Future AI Developer 🚀 | PHP Developer 💻";
 let i = 0;
 
 function typing() {
@@ -126,10 +167,22 @@ function typing() {
 }
 typing();
 
-// dark light toggle
+// toggle mode
 function toggleMode() {
   document.body.classList.toggle("light-mode");
 }
+
+// scroll reveal
+const reveals = document.querySelectorAll(".reveal");
+
+window.addEventListener("scroll", () => {
+  reveals.forEach(el => {
+    let top = el.getBoundingClientRect().top;
+    if (top < window.innerHeight - 100) {
+      el.classList.add("show");
+    }
+  });
+});
 </script>
 
 </body>
