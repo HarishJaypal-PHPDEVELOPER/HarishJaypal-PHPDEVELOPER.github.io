@@ -1,86 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Harish Jaypal | Portfolio</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Harish Jaypal | Portfolio</title>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #0f172a;
-      color: white;
-      text-align: center;
-    }
+<style>
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #0f172a, #020617);
+  color: white;
+  text-align: center;
+}
 
-    header {
-      padding: 60px 20px;
-    }
+header {
+  padding: 80px 20px;
+}
 
-    h1 {
-      font-size: 40px;
-      color: #38bdf8;
-    }
+h1 {
+  font-size: 45px;
+  color: #38bdf8;
+}
 
-    p {
-      font-size: 18px;
-      color: #cbd5f5;
-    }
+#typing {
+  font-size: 20px;
+  color: #cbd5f5;
+  margin-top: 10px;
+}
 
-    .btn {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 10px 20px;
-      background: #38bdf8;
-      color: black;
-      text-decoration: none;
-      border-radius: 5px;
-      font-weight: bold;
-    }
+.btn {
+  display: inline-block;
+  margin-top: 25px;
+  padding: 12px 25px;
+  background: #38bdf8;
+  color: black;
+  text-decoration: none;
+  border-radius: 30px;
+  font-weight: bold;
+  transition: 0.3s;
+}
 
-    section {
-      padding: 40px 20px;
-    }
+.btn:hover {
+  background: #0ea5e9;
+  transform: scale(1.05);
+}
 
-    .card {
-      background: #1e293b;
-      padding: 20px;
-      margin: 10px;
-      border-radius: 10px;
-      display: inline-block;
-      width: 250px;
-    }
+section {
+  padding: 50px 20px;
+}
 
-    footer {
-      padding: 20px;
-      background: #020617;
-      font-size: 14px;
-    }
-  </style>
+.card-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.card {
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 20px;
+  margin: 15px;
+  border-radius: 15px;
+  width: 250px;
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 0 20px rgba(56,189,248,0.3);
+}
+
+footer {
+  padding: 20px;
+  background: #020617;
+  font-size: 14px;
+}
+
+/* Glow effect */
+.glow {
+  text-shadow: 0 0 10px #38bdf8, 0 0 20px #38bdf8;
+}
+</style>
 </head>
 
 <body>
 
 <header>
-  <h1>Hi, I'm Harish 👋</h1>
-  <p>Future AI Developer | PHP Developer | Web Designer 🚀</p>
-  <a href="https://github.com/HarishJaypal-PHPDEVELOPER" class="btn">My GitHub</a>
+  <h1 class="glow">Hi, I'm Harish 👋</h1>
+  <h2 id="typing"></h2>
+  <a href="https://github.com/HarishJaypal-PHPDEVELOPER" target="_blank" class="btn">Visit GitHub</a>
 </header>
 
 <section>
   <h2>🚀 My Projects</h2>
 
-  <div class="card">
-    <h3>PayBolt</h3>
-    <p>Next-gen payment app 💳</p>
-  </div>
+  <div class="card-container">
 
-  <div class="card">
-    <h3>HarishCyborg</h3>
-    <p>AI powered system 🤖</p>
-  </div>
+    <a href="https://github.com/HarishJaypal-PHPDEVELOPER" target="_blank">
+      <div class="card">
+        <h3>PayBolt 💳</h3>
+        <p>Next-gen payment app</p>
+      </div>
+    </a>
 
+    <a href="https://github.com/HarishJaypal-PHPDEVELOPER" target="_blank">
+      <div class="card">
+        <h3>HarishCyborg 🤖</h3>
+        <p>AI powered system</p>
+      </div>
+    </a>
+
+  </div>
 </section>
 
 <section>
@@ -88,9 +120,28 @@
   <p>PHP | HTML | CSS | JavaScript | Learning AI 🤖</p>
 </section>
 
+<section>
+  <h2>📫 Contact</h2>
+  <p>Email: harish@example.com</p>
+</section>
+
 <footer>
   <p>© 2026 Harish Jaypal | Built with passion 🔥</p>
 </footer>
+
+<script>
+let text = "Future AI Developer 🚀 | PHP Developer 💻";
+let i = 0;
+
+function typing() {
+  if (i < text.length) {
+    document.getElementById("typing").innerHTML += text.charAt(i);
+    i++;
+    setTimeout(typing, 40);
+  }
+}
+typing();
+</script>
 
 </body>
 </html>
